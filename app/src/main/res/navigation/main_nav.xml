@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.nasatoday.fragments.HomeFragment"
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/openPicture"
+            app:destination="@id/pictureFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newsFragment"
+        android:name="com.example.nasatoday.fragments.NewsFragment"
+        android:label="NewsFragment" />
+    <fragment
+        android:id="@+id/exploreFragment"
+        android:name="com.example.nasatoday.fragments.ExploreFragment"
+        android:label="ExploreFragment" />
+    <fragment
+        android:id="@+id/pictureFragment"
+        android:name="com.example.nasatoday.fragments.PictureFragment"
+        android:label="PictureFragment" >
+        <argument
+            android:name="picture"
+            app:argType="com.example.nasatoday.model.PictureOfTheDayModel" />
+    </fragment>
+</navigation>

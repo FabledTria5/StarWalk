@@ -1,0 +1,15 @@
+<resources>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="star_walk">Star Walk</string>
+    <string name="ursaicon">ursaIcon</string>
+    <!-- Strings used for fragments for navigation -->
+
+    <string name="home_message">All you need to unravel the mysteries of the midnight sky</string>
+    <string name="picture_of_the_day">Picture of the day</string>
+    <string name="home">Home</string>
+    <string name="news">News</string>
+    <string name="explore">Explore</string>
+    <string name="divider">divider</string>
+    <string name="space_is_now">Space is Now</string>
+    <string name="type_to_search">Type to search</string>
+</resources>
