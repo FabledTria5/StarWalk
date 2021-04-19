@@ -17,13 +17,39 @@
             android:id="@+id/pictureBig"
             android:layout_width="match_parent"
             android:layout_height="700dp"
-            android:transitionName="pictureBig"
-            android:paddingTop="@dimen/_10sdp"
             android:background="@color/black"
             android:contentDescription="@string/picture_of_the_day"
             android:paddingHorizontal="@dimen/_10sdp"
+            android:paddingTop="@dimen/_10sdp"
             android:paddingBottom="@dimen/_5sdp"
+            android:transitionName="pictureBig"
             app:url="@{pictureURL}" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chip_group"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp"
+            android:paddingHorizontal="@dimen/_10sdp"
+            android:alpha="0.7"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipHd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:checkable="true"
+                android:text="@string/high_resolution" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipSd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:text="@string/low_resolution" />
+
+        </com.google.android.material.chip.ChipGroup>
+
 
         <include
             android:id="@+id/pictureBottomSheet"

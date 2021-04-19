@@ -12,4 +12,6 @@
     <string name="divider">divider</string>
     <string name="space_is_now">Space is Now</string>
     <string name="type_to_search">Type to search</string>
+    <string name="high_resolution">High Resolution</string>
+    <string name="low_resolution">Low resolution</string>
 </resources>

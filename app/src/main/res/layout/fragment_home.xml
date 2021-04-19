@@ -102,7 +102,7 @@
             <ImageView
                 android:id="@+id/ivPictureOfTheDay"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_130sdp"
+                android:layout_height="@dimen/_200sdp"
                 android:layout_marginHorizontal="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_6sdp"
                 android:contentDescription="@string/picture_of_the_day"
