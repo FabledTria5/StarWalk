@@ -91,4 +91,6 @@ dependencies {
 
     // Interceptor
     implementation('com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2')
+
+    implementation 'com.chenlittleping:recyclercoverflow:1.0.6'
 }

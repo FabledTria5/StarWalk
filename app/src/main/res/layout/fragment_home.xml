@@ -17,8 +17,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/main_background">
+        android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -38,12 +37,10 @@
 
             <TextView
                 android:id="@+id/textView"
+                style="@style/headersText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:fontFamily="@font/noto_sans_bold"
                 android:text="@string/star_walk"
-                android:textColor="@color/white"
                 android:textSize="@dimen/_18ssp"
                 android:transitionName="textTransition"
                 app:layout_constraintStart_toStartOf="parent"
@@ -64,9 +61,8 @@
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/startMargin"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:fontFamily="@font/noto_sans_reg"
                 android:maxWidth="@dimen/_160sdp"
                 android:text="@string/home_message"
                 android:textColor="@color/lightGray"
@@ -76,13 +72,11 @@
 
             <TextView
                 android:id="@+id/textView3"
+                style="@style/headersText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_30sdp"
-                android:fontFamily="@font/noto_sans_bold"
                 android:text="@string/space_is_now"
-                android:textColor="@color/white"
                 android:textSize="@dimen/_12ssp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView2" />
@@ -103,7 +97,7 @@
                 android:id="@+id/ivPictureOfTheDay"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_130sdp"
-                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginHorizontal="@dimen/startMargin"
                 android:layout_marginTop="@dimen/_6sdp"
                 android:contentDescription="@string/picture_of_the_day"
                 android:transitionName="pictureBig"
@@ -113,13 +107,10 @@
                 app:url="@{imageURL}" />
 
             <TextView
+                style="@style/imageDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/noto_sans_reg"
                 android:text="@string/picture_of_the_day"
-                android:layout_marginBottom="@dimen/_5sdp"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:textColor="@color/white"
                 android:visibility="@{imageURL != null ? View.VISIBLE : View.GONE, default=gone}"
                 app:layout_constraintBottom_toBottomOf="@+id/ivPictureOfTheDay"
                 app:layout_constraintStart_toStartOf="@+id/ivPictureOfTheDay" />
@@ -134,8 +125,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/ivPictureOfTheDay"
                 app:layout_constraintEnd_toEndOf="@+id/ivPictureOfTheDay"
                 app:layout_constraintStart_toStartOf="@+id/ivPictureOfTheDay"
-                app:layout_constraintTop_toTopOf="@+id/ivPictureOfTheDay"
-                app:trackColor="@color/iconBlue" />
+                app:layout_constraintTop_toTopOf="@+id/ivPictureOfTheDay" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -11,8 +11,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/black"
-            app:itemIconTint="@drawable/bottom_nav_icon_selector"
-            app:itemTextColor="@drawable/bottom_nav_icon_selector"
+            app:itemIconTint="?attr/bottomNavIcons"
+            app:itemTextColor="?attr/bottomNavIcons"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -31,6 +31,5 @@
             app:navGraph="@navigation/main_nav" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </layout>

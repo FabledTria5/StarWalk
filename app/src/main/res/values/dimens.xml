@@ -1,1 +1,4 @@
-<resources />
+<resources>
+    <dimen name="startMargin">@dimen/_10sdp</dimen>
+    <dimen name="imageDescriptionBottom">@dimen/_5sdp</dimen>
+</resources>

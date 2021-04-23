@@ -5,7 +5,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bottom_sheet_background"
+        android:background="?attr/searchFieldBackground"
         app:behavior_peekHeight="@dimen/_110sdp"
         app:layout_behavior="@string/bottom_sheet_behavior">
 
@@ -13,7 +13,7 @@
             android:id="@+id/cardView"
             android:layout_width="@dimen/_60sdp"
             android:layout_height="@dimen/_2sdp"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/startMargin"
             android:alpha="0.7"
             app:cardBackgroundColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
@@ -22,12 +22,11 @@
 
         <TextView
             android:id="@+id/tvPictureTitle"
+            style="@style/headersText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/startMargin"
             android:layout_marginTop="@dimen/_3sdp"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:fontFamily="@font/noto_sans_bold"
-            android:textColor="@color/white"
             android:textSize="@dimen/_15ssp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView" />
@@ -36,7 +35,7 @@
             android:id="@+id/tvPictureDescription"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/startMargin"
             android:fontFamily="@font/noto_sans_reg"
             android:paddingHorizontal="@dimen/_10sdp"
             android:textColor="@color/lightGray"
