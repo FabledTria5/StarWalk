@@ -23,7 +23,7 @@
         android:name="com.example.nasatoday.fragments.PictureFragment"
         android:label="PictureFragment" >
         <argument
-            android:name="picture"
+            android:name="pictures"
             app:argType="com.example.nasatoday.model.PictureOfTheDayResponse" />
     </fragment>
     <fragment

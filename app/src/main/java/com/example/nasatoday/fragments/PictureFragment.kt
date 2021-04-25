@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
+import androidx.viewpager.widget.ViewPager
 import com.example.nasatoday.R
+import com.example.nasatoday.adapters.PicturesViewPagerAdapter
 import com.example.nasatoday.databinding.FragmentPictureBinding
 
 class PictureFragment : Fragment() {
@@ -28,7 +30,37 @@ class PictureFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setupAnimation()
-//        fillInfo()
+        fillImages()
+    }
+
+    private fun fillImages() {
+        binding.viewPager.adapter =
+            PicturesViewPagerAdapter(requireActivity().supportFragmentManager, getFragments())
+        fillInfo(0)
+        binding.viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) = Unit
+
+            override fun onPageSelected(position: Int) = fillInfo(position)
+
+            override fun onPageScrollStateChanged(state: Int) = Unit
+        })
+    }
+
+    private fun getFragments(): List<Fragment> {
+        val fragments = arrayListOf<Fragment>()
+        for (image in args.pictures) {
+            val fragment = ViewPagerItemFragment.getInstance(
+                imageURL = image.hdurl,
+                imageName = image.title,
+                imageDate = image.date
+            )
+            fragments.add(fragment)
+        }
+        return fragments.reversed()
     }
 
     private fun setupAnimation() {
@@ -38,11 +70,8 @@ class PictureFragment : Fragment() {
         sharedElementReturnTransition = animation
     }
 
-//    private fun fillInfo() {
-//        args.picture.apply {
-//            binding.pictureURL = url
-//            binding.pictureBottomSheet.tvPictureDescription.text = explanation
-//            binding.pictureBottomSheet.tvPictureTitle.text = title
-//        }
-//    }
+    private fun fillInfo(selectedPicturePosition: Int) {
+        val selectedPicture = args.pictures.reversed()[selectedPicturePosition]
+        binding.pictureBottomSheet.tvPictureDescription.text = selectedPicture.explanation
+    }
 }

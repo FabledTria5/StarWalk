@@ -1,29 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <data>
-
-        <variable
-            name="pictureURL"
-            type="String" />
-    </data>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/pictureBig"
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewPager"
             android:layout_width="match_parent"
-            android:layout_height="700dp"
-            android:transitionName="pictureBig"
-            android:paddingTop="@dimen/_10sdp"
-            android:background="@color/black"
-            android:contentDescription="@string/picture_of_the_day"
-            android:paddingHorizontal="@dimen/startMargin"
-            android:paddingBottom="@dimen/_5sdp"
-            app:url="@{pictureURL}" />
+            android:layout_height="@dimen/_550sdp" />
 
         <include
             android:id="@+id/pictureBottomSheet"

@@ -125,6 +125,7 @@
                 android:indeterminate="true"
                 android:visibility="@{imageURL != null ? View.GONE : View.VISIBLE, default=visible}"
                 app:indicatorColor="@color/black"
+                app:trackColor="?attr/progressBarColor"
                 app:layout_constraintBottom_toBottomOf="@id/ivPictureOfTheDay"
                 app:layout_constraintEnd_toEndOf="@+id/ivPictureOfTheDay"
                 app:layout_constraintStart_toStartOf="@+id/ivPictureOfTheDay"

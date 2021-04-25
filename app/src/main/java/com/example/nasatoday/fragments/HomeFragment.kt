@@ -17,6 +17,7 @@ import com.example.nasatoday.model.PictureOfTheDayData
 import com.example.nasatoday.model.PictureOfTheDayModel
 import com.example.nasatoday.model.PictureOfTheDayResponse
 import com.example.nasatoday.repository.NasaRepository
+import com.example.nasatoday.utils.removeAllVideos
 import com.example.nasatoday.utils.toast
 import com.example.nasatoday.viewmodels.HomeViewModel
 import com.example.nasatoday.viewmodels.factories.HomeViewModelFactory
@@ -65,15 +66,15 @@ class HomeFragment : Fragment() {
     }
 
     private fun openImage(pictureResponse: PictureOfTheDayResponse) {
-        if (pictureResponse[pictureResponse.count() - 1].thumbnail_url == null) {
+        if (pictureResponse.last().thumbnail_url == null) {
             val extras = FragmentNavigatorExtras(
                 binding.ivPictureOfTheDay to "pictureBig"
             )
-            HomeFragmentDirections.openPicture(picture = pictureResponse).also {
+            HomeFragmentDirections.openPicture(pictures = pictureResponse.removeAllVideos()).also {
                 findNavController().navigate(it, extras)
             }
         } else {
-            HomeFragmentDirections.openVideo(video = pictureResponse[pictureResponse.count() - 1])
+            HomeFragmentDirections.openVideo(video = pictureResponse.last())
                 .also {
                     findNavController().navigate(it)
                 }

@@ -3,6 +3,9 @@ package com.example.nasatoday.utils
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.example.nasatoday.model.PictureOfTheDayModel
+import com.example.nasatoday.model.PictureOfTheDayResponse
+import java.util.ArrayList
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
@@ -18,6 +21,21 @@ fun View.show() {
 
 fun View.hide() {
     visibility = View.GONE
+}
+
+fun PictureOfTheDayResponse.removeAllVideos(): PictureOfTheDayResponse {
+    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+        this.removeIf { it.thumbnail_url != null }
+    } else {
+        val iterator = this.iterator()
+        while (iterator.hasNext()) {
+            val model = iterator.next()
+            if (model.thumbnail_url != null) {
+                iterator.remove()
+            }
+        }
+    }
+    return this
 }
 
 fun String.getYoutubeUrl(): String {
