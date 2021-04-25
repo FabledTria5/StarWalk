@@ -5,6 +5,10 @@
     <data>
 
         <variable
+            name="pictureReceived"
+            type="Boolean" />
+
+        <variable
             name="currentDate"
             type="String" />
 
@@ -31,7 +35,6 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:contentDescription="@string/ursaicon"
                 android:src="@drawable/ic_ursa_major"
-                android:transitionName="logoTransition"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -110,7 +113,7 @@
                 style="@style/imageDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/picture_of_the_day"
+                android:text="@{pictureReceived ? @string/picture_of_the_day : @string/video_of_the_day, default = @string/picture_of_the_day}"
                 android:visibility="@{imageURL != null ? View.VISIBLE : View.GONE, default=gone}"
                 app:layout_constraintBottom_toBottomOf="@+id/ivPictureOfTheDay"
                 app:layout_constraintStart_toStartOf="@+id/ivPictureOfTheDay" />

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <attr name="bottomNavIcons" format="reference" />
-    <attr name="searchFieldBackground" format="reference" />
+    <attr name="themeBackground" format="reference" />
+    <attr name="progressBarColor" format="color" />
 </resources>

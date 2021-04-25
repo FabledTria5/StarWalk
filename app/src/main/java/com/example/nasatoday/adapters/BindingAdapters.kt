@@ -1,4 +1,4 @@
-package com.example.nasatoday.utils
+package com.example.nasatoday.adapters
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
@@ -8,6 +8,6 @@ import coil.transform.RoundedCornersTransformation
 @BindingAdapter("app:url")
 fun loadImage(imageView: ImageView, imageURL: String?) {
     imageView.load(imageURL) {
-        transformations(RoundedCornersTransformation(radius = 30f))
+        transformations(RoundedCornersTransformation(radius = 20f))
     }
 }

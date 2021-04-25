@@ -1,8 +1,10 @@
 package com.example.nasatoday.fragments
 
 import android.os.Bundle
-import android.view.*
-import android.widget.ImageView
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.view.ViewTreeObserver
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -12,6 +14,8 @@ import androidx.navigation.fragment.findNavController
 import com.example.nasatoday.R
 import com.example.nasatoday.databinding.FragmentHomeBinding
 import com.example.nasatoday.model.PictureOfTheDayData
+import com.example.nasatoday.model.PictureOfTheDayModel
+import com.example.nasatoday.model.PictureOfTheDayResponse
 import com.example.nasatoday.repository.NasaRepository
 import com.example.nasatoday.utils.toast
 import com.example.nasatoday.viewmodels.HomeViewModel
@@ -35,8 +39,8 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setEnterAnimation()
         initViewModel()
-        observeImageOfTheDay()
         observeTime()
+        observeImageOfTheDay()
     }
 
     private fun observeTime() {
@@ -50,17 +54,39 @@ class HomeFragment : Fragment() {
             when (pictureData) {
                 is PictureOfTheDayData.Error -> toast(pictureData.error.toString())
                 is PictureOfTheDayData.Success -> {
-                    binding.imageURL = pictureData.pictureOfTheDayModel.url
+                    val response = pictureData.pictureOfTheDayResponse
+                    setPicture(response[response.count() - 1])
                     binding.ivPictureOfTheDay.setOnClickListener {
-                        val extras =
-                            FragmentNavigatorExtras(binding.ivPictureOfTheDay to "pictureBig")
-                        HomeFragmentDirections.openPicture(picture = pictureData.pictureOfTheDayModel)
-                            .also {
-                                findNavController().navigate(it, extras)
-                            }
+                        openImage(response)
                     }
                 }
             }
+        }
+    }
+
+    private fun openImage(pictureResponse: PictureOfTheDayResponse) {
+        if (pictureResponse[pictureResponse.count() - 1].thumbnail_url == null) {
+            val extras = FragmentNavigatorExtras(
+                binding.ivPictureOfTheDay to "pictureBig"
+            )
+            HomeFragmentDirections.openPicture(picture = pictureResponse).also {
+                findNavController().navigate(it, extras)
+            }
+        } else {
+            HomeFragmentDirections.openVideo(video = pictureResponse[pictureResponse.count() - 1])
+                .also {
+                    findNavController().navigate(it)
+                }
+        }
+    }
+
+    private fun setPicture(pictureModel: PictureOfTheDayModel) {
+        if (pictureModel.thumbnail_url == null) {
+            binding.imageURL = pictureModel.url
+            binding.pictureReceived = true
+        } else {
+            binding.imageURL = pictureModel.thumbnail_url
+            binding.pictureReceived = false
         }
     }
 
@@ -72,16 +98,6 @@ class HomeFragment : Fragment() {
 
     private fun setEnterAnimation() {
         val sharedText = view?.findViewById<TextView>(R.id.textView)
-        val sharedImage = view?.findViewById<ImageView>(R.id.imageView)
-
-        sharedImage?.viewTreeObserver?.addOnPreDrawListener(object :
-            ViewTreeObserver.OnPreDrawListener {
-            override fun onPreDraw(): Boolean {
-                sharedImage.viewTreeObserver.removeOnPreDrawListener(this)
-                requireActivity().startPostponedEnterTransition()
-                return true
-            }
-        })
 
         sharedText?.viewTreeObserver?.addOnPreDrawListener(object :
             ViewTreeObserver.OnPreDrawListener {

@@ -10,6 +10,9 @@
         <action
             android:id="@+id/openPicture"
             app:destination="@id/pictureFragment" />
+        <action
+            android:id="@+id/openVideo"
+            app:destination="@id/videoFragment" />
     </fragment>
     <fragment
         android:id="@+id/exploreFragment"
@@ -21,10 +24,18 @@
         android:label="PictureFragment" >
         <argument
             android:name="picture"
-            app:argType="com.example.nasatoday.model.PictureOfTheDayModel" />
+            app:argType="com.example.nasatoday.model.PictureOfTheDayResponse" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.example.nasatoday.fragments.SettingsFragment"
         android:label="SettingsFragment" />
+    <fragment
+        android:id="@+id/videoFragment"
+        android:name="com.example.nasatoday.fragments.VideoFragment"
+        android:label="VideoFragment" >
+        <argument
+            android:name="video"
+            app:argType="com.example.nasatoday.model.PictureOfTheDayModel" />
+    </fragment>
 </navigation>

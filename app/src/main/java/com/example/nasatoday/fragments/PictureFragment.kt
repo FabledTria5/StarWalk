@@ -28,7 +28,7 @@ class PictureFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setupAnimation()
-        fillInfo()
+//        fillInfo()
     }
 
     private fun setupAnimation() {
@@ -38,11 +38,11 @@ class PictureFragment : Fragment() {
         sharedElementReturnTransition = animation
     }
 
-    private fun fillInfo() {
-        args.picture.apply {
-            binding.pictureURL = url
-            binding.pictureBottomSheet.tvPictureDescription.text = explanation
-            binding.pictureBottomSheet.tvPictureTitle.text = title
-        }
-    }
+//    private fun fillInfo() {
+//        args.picture.apply {
+//            binding.pictureURL = url
+//            binding.pictureBottomSheet.tvPictureDescription.text = explanation
+//            binding.pictureBottomSheet.tvPictureTitle.text = title
+//        }
+//    }
 }
