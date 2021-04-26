@@ -23,21 +23,6 @@ fun View.hide() {
     visibility = View.GONE
 }
 
-fun PictureOfTheDayResponse.removeAllVideos(): PictureOfTheDayResponse {
-    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-        this.removeIf { it.thumbnail_url != null }
-    } else {
-        val iterator = this.iterator()
-        while (iterator.hasNext()) {
-            val model = iterator.next()
-            if (model.thumbnail_url != null) {
-                iterator.remove()
-            }
-        }
-    }
-    return this
-}
-
 fun String.getYoutubeUrl(): String {
 
     val compiledPattern = Pattern.compile(pattern)

@@ -17,7 +17,6 @@ import com.example.nasatoday.model.PictureOfTheDayData
 import com.example.nasatoday.model.PictureOfTheDayModel
 import com.example.nasatoday.model.PictureOfTheDayResponse
 import com.example.nasatoday.repository.NasaRepository
-import com.example.nasatoday.utils.removeAllVideos
 import com.example.nasatoday.utils.toast
 import com.example.nasatoday.viewmodels.HomeViewModel
 import com.example.nasatoday.viewmodels.factories.HomeViewModelFactory
@@ -56,7 +55,7 @@ class HomeFragment : Fragment() {
                 is PictureOfTheDayData.Error -> toast(pictureData.error.toString())
                 is PictureOfTheDayData.Success -> {
                     val response = pictureData.pictureOfTheDayResponse
-                    setPicture(response[response.count() - 1])
+                    setPicture(response.last())
                     binding.ivPictureOfTheDay.setOnClickListener {
                         openImage(response)
                     }
@@ -67,28 +66,20 @@ class HomeFragment : Fragment() {
 
     private fun openImage(pictureResponse: PictureOfTheDayResponse) {
         if (pictureResponse.last().thumbnail_url == null) {
-            val extras = FragmentNavigatorExtras(
-                binding.ivPictureOfTheDay to "pictureBig"
-            )
-            HomeFragmentDirections.openPicture(pictures = pictureResponse.removeAllVideos()).also {
-                findNavController().navigate(it, extras)
+            HomeFragmentDirections.openPictures(response = pictureResponse).also {
+                findNavController().navigate(it)
             }
         } else {
-            HomeFragmentDirections.openVideo(video = pictureResponse.last())
-                .also {
-                    findNavController().navigate(it)
-                }
+            HomeFragmentDirections.openPictures(response = pictureResponse).also {
+                findNavController().navigate(it)
+            }
         }
     }
 
     private fun setPicture(pictureModel: PictureOfTheDayModel) {
-        if (pictureModel.thumbnail_url == null) {
-            binding.imageURL = pictureModel.url
-            binding.pictureReceived = true
-        } else {
-            binding.imageURL = pictureModel.thumbnail_url
-            binding.pictureReceived = false
-        }
+        if (pictureModel.thumbnail_url == null) binding.imageURL = pictureModel.url
+        else binding.imageURL = pictureModel.thumbnail_url
+        binding.pictureReceived = pictureModel.thumbnail_url == null
     }
 
     private fun initViewModel() {

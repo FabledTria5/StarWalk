@@ -7,16 +7,27 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.navArgs
-import androidx.viewpager.widget.ViewPager
 import com.example.nasatoday.R
-import com.example.nasatoday.adapters.PicturesViewPagerAdapter
-import com.example.nasatoday.databinding.FragmentPictureBinding
+import com.example.nasatoday.databinding.FragmentPicturesBinding
+import com.example.nasatoday.model.PictureOfTheDayModel
+import com.example.nasatoday.utils.getYoutubeUrl
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 
 class PictureFragment : Fragment() {
 
-    private lateinit var binding: FragmentPictureBinding
-    private val args: PictureFragmentArgs by navArgs()
+    companion object {
+
+        fun getInstance(pictureOfTheDayModel: PictureOfTheDayModel): PictureFragment {
+            val bundle = Bundle()
+            val fragment = PictureFragment()
+            bundle.putSerializable("response", pictureOfTheDayModel)
+            fragment.arguments = bundle
+            return fragment
+        }
+    }
+
+    private lateinit var binding: FragmentPicturesBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -24,54 +35,44 @@ class PictureFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = DataBindingUtil
-            .inflate(inflater, R.layout.fragment_picture, container, false)
+            .inflate(inflater, R.layout.fragment_pictures, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        setupAnimation()
-        fillImages()
+        val model = arguments?.getSerializable("response") as PictureOfTheDayModel
+        if (receivedPicture(model)) setPicture(model)
+        else setVideo(model)
     }
 
-    private fun fillImages() {
-        binding.viewPager.adapter =
-            PicturesViewPagerAdapter(requireActivity().supportFragmentManager, getFragments())
-        fillInfo(0)
-        binding.viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-            override fun onPageScrolled(
-                position: Int,
-                positionOffset: Float,
-                positionOffsetPixels: Int
-            ) = Unit
+    override fun onDestroy() {
+        super.onDestroy()
+        binding.youtubePlayer.release()
+    }
 
-            override fun onPageSelected(position: Int) = fillInfo(position)
-
-            override fun onPageScrollStateChanged(state: Int) = Unit
+    private fun setVideo(model: PictureOfTheDayModel) {
+        binding.dataIsPicture = false
+        lifecycle.addObserver(binding.youtubePlayer)
+        binding.youtubePlayer.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
+            override fun onReady(youTubePlayer: YouTubePlayer) {
+                youTubePlayer.loadVideo(model.url.getYoutubeUrl(), 0f)
+            }
         })
+        setContentText(model)
     }
 
-    private fun getFragments(): List<Fragment> {
-        val fragments = arrayListOf<Fragment>()
-        for (image in args.pictures) {
-            val fragment = ViewPagerItemFragment.getInstance(
-                imageURL = image.hdurl,
-                imageName = image.title,
-                imageDate = image.date
-            )
-            fragments.add(fragment)
-        }
-        return fragments.reversed()
+    private fun setPicture(model: PictureOfTheDayModel) {
+        binding.dataIsPicture = true
+        binding.pictureURL = model.hdurl
+        setContentText(model)
     }
 
-    private fun setupAnimation() {
-        val animation =
-            TransitionInflater.from(requireContext()).inflateTransition(android.R.transition.move)
-        sharedElementEnterTransition = animation
-        sharedElementReturnTransition = animation
+    private fun setContentText(model: PictureOfTheDayModel) {
+        binding.contentTitle.text = model.title
+        binding.contentDescription.text = model.explanation
     }
 
-    private fun fillInfo(selectedPicturePosition: Int) {
-        val selectedPicture = args.pictures.reversed()[selectedPicturePosition]
-        binding.pictureBottomSheet.tvPictureDescription.text = selectedPicture.explanation
+    private fun receivedPicture(model: PictureOfTheDayModel): Boolean {
+        return model.thumbnail_url == null
     }
 }

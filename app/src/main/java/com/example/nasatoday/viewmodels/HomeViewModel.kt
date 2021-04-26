@@ -19,7 +19,7 @@ class HomeViewModel(private val repository: NasaRepository) : ViewModel() {
     val imageResponse: MutableLiveData<PictureOfTheDayData> = MutableLiveData()
     val currentTime: MutableLiveData<String> = MutableLiveData()
 
-    private val startDaysOffset = 5
+    private val startDaysOffset = 3
 
     fun getImage() {
         if (imageResponse.value != null) return
