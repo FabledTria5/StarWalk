@@ -1,6 +1,7 @@
 package com.example.nasatoday.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +10,6 @@ import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import com.example.nasatoday.R
 import com.example.nasatoday.databinding.FragmentHomeBinding
@@ -22,6 +22,10 @@ import com.example.nasatoday.viewmodels.HomeViewModel
 import com.example.nasatoday.viewmodels.factories.HomeViewModelFactory
 
 class HomeFragment : Fragment() {
+
+    companion object {
+        private const val TAG = "HomeFragment"
+    }
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var viewModel: HomeViewModel
@@ -41,6 +45,7 @@ class HomeFragment : Fragment() {
         initViewModel()
         observeTime()
         observeImageOfTheDay()
+        Log.d(TAG, "onViewCreated: ${requireActivity().supportFragmentManager.fragments.size}")
     }
 
     private fun observeTime() {

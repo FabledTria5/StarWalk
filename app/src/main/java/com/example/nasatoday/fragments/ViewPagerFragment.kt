@@ -1,6 +1,7 @@
 package com.example.nasatoday.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,10 @@ import com.google.android.material.tabs.TabLayoutMediator
 import java.util.*
 
 class ViewPagerFragment : Fragment() {
+
+    companion object {
+        private const val TAG = "ViewPagerFragment"
+    }
 
     private lateinit var binding: FragmentViewPagerBinding
     private val args: ViewPagerFragmentArgs by navArgs()
@@ -32,13 +37,14 @@ class ViewPagerFragment : Fragment() {
         binding.viewPager.apply {
             adapter = ViewPagerAdapter(getFragments(), childFragmentManager, lifecycle)
             isUserInputEnabled = false
-            isSaveFromParentEnabled = false
             setPageTransformer(ZoomOutTransformer())
         }
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             tab.text = args.response[position].date
             binding.viewPager.setCurrentItem(tab.position, true)
         }.attach()
+
+        Log.d(TAG, "onViewCreated: ${childFragmentManager.fragments.size}")
     }
 
     private fun getFragments(): ArrayList<PictureFragment> {
