@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,6 +39,7 @@ class SettingsFragment : Fragment() {
         initializeFragment()
         setupRecyclerView()
         setupListeners()
+        setThemeName(themeSettings.getInt(THEME_PREFERENCE, 1))
     }
 
     private fun initializeFragment() {
@@ -81,12 +84,17 @@ class SettingsFragment : Fragment() {
     }
 
     private fun setThemeName(themePosition: Int) {
-        context.apply {
-            when (themePosition) {
-                Themes.MOON.ordinal -> binding.themeName = getString(R.string.moon_theme)
-                Themes.SPACE.ordinal -> binding.themeName = getString(R.string.space_theme)
-                Themes.MARS.ordinal -> binding.themeName = getString(R.string.mars_theme)
+        if (isAdded) {
+            context.apply {
+                when (themePosition) {
+                    Themes.MOON.ordinal -> binding.themeName = getString(R.string.moon_theme)
+                    Themes.SPACE.ordinal -> binding.themeName = getString(R.string.space_theme)
+                    Themes.MARS.ordinal -> binding.themeName = getString(R.string.mars_theme)
+                }
             }
-        }
+        } else Handler(Looper.getMainLooper()).postDelayed(
+            { setThemeName(themePosition = themePosition) },
+            300
+        )
     }
 }

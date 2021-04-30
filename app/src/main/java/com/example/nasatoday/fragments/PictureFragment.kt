@@ -17,10 +17,12 @@ class PictureFragment : Fragment() {
 
     companion object {
 
+        const val RESPONSE = "response"
+
         fun getInstance(pictureOfTheDayModel: PictureOfTheDayModel): PictureFragment {
             val bundle = Bundle()
             val fragment = PictureFragment()
-            bundle.putSerializable("response", pictureOfTheDayModel)
+            bundle.putSerializable(RESPONSE, pictureOfTheDayModel)
             fragment.arguments = bundle
             return fragment
         }
@@ -39,7 +41,7 @@ class PictureFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val model = arguments?.getSerializable("response") as PictureOfTheDayModel
+        val model = arguments?.getSerializable(RESPONSE) as PictureOfTheDayModel
         if (receivedPicture(model)) setPicture(model)
         else setVideo(model)
     }
@@ -55,6 +57,7 @@ class PictureFragment : Fragment() {
         binding.youtubePlayer.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
             override fun onReady(youTubePlayer: YouTubePlayer) {
                 youTubePlayer.loadVideo(model.url.getYoutubeUrl(), 0f)
+                youTubePlayer.pause()
             }
         })
         setContentText(model)

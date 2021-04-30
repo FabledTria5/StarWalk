@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -15,52 +16,50 @@
             type="String" />
     </data>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layoutDescription="@xml/fragment_pictures_xml_constraintlayout_scene">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appBarLayout"
-            android:layout_width="match_parent"
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fitsSystemWindows="true">
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="youtubePlayer,ivPictureOfTheDay"
+            tools:layout_editor_absoluteY="869dp" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+        <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+            android:id="@+id/youtubePlayer"
+            android:layout_width="0dp"
+            android:layout_height="250dp"
+            android:visibility="@{dataIsPicture ? View.INVISIBLE : View.VISIBLE, default=invisible}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-                <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-                    android:id="@+id/youtubePlayer"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="@{dataIsPicture ? View.INVISIBLE : View.VISIBLE, default=invisible}"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:id="@+id/ivPictureOfTheDay"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:contentDescription="@string/image"
-                    android:visibility="@{dataIsPicture ? View.VISIBLE : View.INVISIBLE, default=visible}"
-                    app:layout_constraintBottom_toBottomOf="@+id/youtubePlayer"
-                    app:layout_constraintEnd_toEndOf="@+id/youtubePlayer"
-                    app:layout_constraintStart_toStartOf="@+id/youtubePlayer"
-                    app:layout_constraintTop_toTopOf="@+id/youtubePlayer"
-                    app:url="@{pictureURL}" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </com.google.android.material.appbar.AppBarLayout>
+        <ImageView
+            android:id="@+id/ivPictureOfTheDay"
+            android:layout_width="0dp"
+            android:layout_height="250dp"
+            android:contentDescription="@string/image"
+            android:visibility="@{dataIsPicture ? View.VISIBLE : View.INVISIBLE, default=visible}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:url="@{pictureURL}" />
 
         <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScrollView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="?attr/themeBackground"
+            android:layout_height="0dp"
             android:layout_marginBottom="56dp"
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+            android:background="?attr/themeBackground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/barrier">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -93,5 +92,5 @@
 
         </androidx.core.widget.NestedScrollView>
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </androidx.constraintlayout.motion.widget.MotionLayout>
 </layout>
