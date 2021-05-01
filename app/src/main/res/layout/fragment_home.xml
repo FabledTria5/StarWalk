@@ -16,122 +16,147 @@
             name="imageURL"
             type="String" />
 
+        <variable
+            name="isExpanded"
+            type="Boolean" />
+
         <import type="android.view.View" />
     </data>
 
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="57dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:contentDescription="@string/ursaicon"
+            android:src="@drawable/ic_ursa_major"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView"
+            style="@style/headersText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/star_walk"
+            android:textSize="@dimen/_18ssp"
+            android:transitionName="textTransition"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+        <ImageView
+            android:id="@+id/ivDivider"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="2dp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:alpha="0.4"
+            android:background="@color/white"
+            android:contentDescription="@string/divider"
+            app:layout_constraintStart_toStartOf="@+id/textView"
+            app:layout_constraintTop_toBottomOf="@id/textView" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/startMargin"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:maxWidth="@dimen/_160sdp"
+            android:text="@string/home_message"
+            android:textColor="@color/lightGray"
+            android:textSize="@dimen/_9ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivDivider" />
+
+        <TextView
+            android:id="@+id/textView3"
+            style="@style/headersText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:text="@string/space_is_now"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_14sdp"
+            android:text="@{currentDate}"
+            android:textColor="@color/lightGray"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintBottom_toTopOf="@+id/cvImageContainer"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cvImageContainer"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="@dimen/_25sdp"
-                android:layout_height="@dimen/_25sdp"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:contentDescription="@string/ursaicon"
-                android:src="@drawable/ic_ursa_major"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/textView"
-                style="@style/headersText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/star_walk"
-                android:textSize="@dimen/_18ssp"
-                android:transitionName="textTransition"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-            <ImageView
-                android:id="@+id/ivDivider"
-                android:layout_width="@dimen/_50sdp"
-                android:layout_height="2dp"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:alpha="0.4"
-                android:background="@color/white"
-                android:contentDescription="@string/divider"
-                app:layout_constraintStart_toStartOf="@+id/textView"
-                app:layout_constraintTop_toBottomOf="@id/textView" />
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/startMargin"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:maxWidth="@dimen/_160sdp"
-                android:text="@string/home_message"
-                android:textColor="@color/lightGray"
-                android:textSize="@dimen/_9ssp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ivDivider" />
-
-            <TextView
-                android:id="@+id/textView3"
-                style="@style/headersText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_30sdp"
-                android:text="@string/space_is_now"
-                android:textSize="@dimen/_12ssp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-            <TextView
-                android:id="@+id/tvDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:layout_marginBottom="@dimen/_14sdp"
-                android:text="@{currentDate}"
-                android:textColor="@color/lightGray"
-                android:textSize="@dimen/_10ssp"
-                app:layout_constraintBottom_toTopOf="@+id/ivPictureOfTheDay"
-                app:layout_constraintEnd_toEndOf="parent" />
+            android:layout_height="@dimen/_170sdp"
+            android:layout_marginHorizontal="@dimen/startMargin"
+            android:layout_marginTop="@dimen/_6sdp"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3">
 
             <ImageView
                 android:id="@+id/ivPictureOfTheDay"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_130sdp"
-                android:layout_marginHorizontal="@dimen/startMargin"
-                android:layout_marginTop="@dimen/_6sdp"
+                android:layout_height="@dimen/_400sdp"
+                android:scaleType="fitStart"
                 android:contentDescription="@string/picture_of_the_day"
-                android:transitionName="pictureBig"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView3"
                 app:url="@{imageURL}" />
 
             <TextView
                 style="@style/imageDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginStart="@dimen/_10sdp"
                 android:text="@{pictureReceived ? @string/picture_of_the_day : @string/video_of_the_day, default = @string/picture_of_the_day}"
                 android:visibility="@{imageURL != null ? View.VISIBLE : View.GONE, default=gone}"
-                app:layout_constraintBottom_toBottomOf="@+id/ivPictureOfTheDay"
-                app:layout_constraintStart_toStartOf="@+id/ivPictureOfTheDay" />
+                app:layout_constraintBottom_toBottomOf="@+id/cvImageContainer"
+                app:layout_constraintStart_toStartOf="@+id/cvImageContainer" />
 
-            <com.google.android.material.progressindicator.CircularProgressIndicator
-                android:id="@+id/circularProgressIndicator"
+            <ImageView
+                android:id="@+id/btnZoomIn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:indeterminate="true"
-                android:visibility="@{imageURL != null ? View.GONE : View.VISIBLE, default=visible}"
-                app:indicatorColor="@color/black"
-                app:trackColor="?attr/progressBarColor"
-                app:layout_constraintBottom_toBottomOf="@id/ivPictureOfTheDay"
-                app:layout_constraintEnd_toEndOf="@+id/ivPictureOfTheDay"
-                app:layout_constraintStart_toStartOf="@+id/ivPictureOfTheDay"
-                app:layout_constraintTop_toTopOf="@+id/ivPictureOfTheDay" />
+                android:layout_gravity="end|bottom"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_7sdp"
+                android:contentDescription="@string/zoom_in_btn"
+                android:src="@{!isExpanded ? @drawable/ic_zoom_in : @drawable/ic_zoom_out, default=@drawable/ic_zoom_in}"
+                android:visibility="@{pictureReceived ? View.VISIBLE : View.GONE, default=gone}"
+                app:layout_constraintBottom_toBottomOf="@+id/cvImageContainer"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:tint="@color/white" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
 
-    </ScrollView>
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/circularProgressIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:visibility="@{imageURL != null ? View.GONE : View.VISIBLE, default=visible}"
+            app:indicatorColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@id/cvImageContainer"
+            app:layout_constraintEnd_toEndOf="@+id/cvImageContainer"
+            app:layout_constraintStart_toStartOf="@+id/cvImageContainer"
+            app:layout_constraintTop_toTopOf="@+id/cvImageContainer"
+            app:trackColor="?attr/progressBarColor" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

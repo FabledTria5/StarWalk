@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -22,18 +21,10 @@
         android:layout_height="match_parent"
         app:layoutDescription="@xml/fragment_pictures_xml_constraintlayout_scene">
 
-        <androidx.constraintlayout.widget.Barrier
-            android:id="@+id/barrier"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:barrierDirection="bottom"
-            app:constraint_referenced_ids="youtubePlayer,ivPictureOfTheDay"
-            tools:layout_editor_absoluteY="869dp" />
-
         <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
             android:id="@+id/youtubePlayer"
             android:layout_width="0dp"
-            android:layout_height="250dp"
+            android:layout_height="@dimen/_250sdp"
             android:visibility="@{dataIsPicture ? View.INVISIBLE : View.VISIBLE, default=invisible}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -42,13 +33,21 @@
         <ImageView
             android:id="@+id/ivPictureOfTheDay"
             android:layout_width="0dp"
-            android:layout_height="250dp"
+            android:layout_height="@dimen/_250sdp"
             android:contentDescription="@string/image"
+            android:scaleType="centerCrop"
             android:visibility="@{dataIsPicture ? View.VISIBLE : View.INVISIBLE, default=visible}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:url="@{pictureURL}" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="youtubePlayer,ivPictureOfTheDay" />
 
         <androidx.core.widget.NestedScrollView
             android:id="@+id/nestedScrollView"
