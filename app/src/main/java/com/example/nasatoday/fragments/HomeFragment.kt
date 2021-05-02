@@ -21,10 +21,12 @@ import com.example.nasatoday.model.PictureOfTheDayData
 import com.example.nasatoday.model.PictureOfTheDayModel
 import com.example.nasatoday.model.PictureOfTheDayResponse
 import com.example.nasatoday.repository.NasaRepository
+import com.example.nasatoday.utils.focusOn
 import com.example.nasatoday.utils.show
 import com.example.nasatoday.utils.toast
 import com.example.nasatoday.viewmodels.HomeViewModel
 import com.example.nasatoday.viewmodels.factories.HomeViewModelFactory
+import androidx.transition.Transition
 
 class HomeFragment : Fragment() {
 
@@ -36,7 +38,19 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var viewModel: HomeViewModel
 
+    private var imageInitHeight = 0
     private var isExpanded = false
+
+    private val transitionListener = object : Transition.TransitionListener {
+        override fun onTransitionStart(transition: Transition) = Unit
+        override fun onTransitionEnd(transition: Transition) {
+            binding.cvImageContainer.focusOn(binding.nestedScrollView)
+        }
+
+        override fun onTransitionCancel(transition: Transition) = Unit
+        override fun onTransitionPause(transition: Transition) = Unit
+        override fun onTransitionResume(transition: Transition) = Unit
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -104,6 +118,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupListeners() {
+        imageInitHeight = binding.cvImageContainer.layoutParams.height
         binding.btnZoomIn.setOnClickListener {
             isExpanded = !isExpanded
             binding.isExpanded = isExpanded
@@ -111,9 +126,10 @@ class HomeFragment : Fragment() {
                 binding.container, TransitionSet()
                     .addTransition(ChangeBounds())
                     .addTransition(ChangeImageTransform())
+                    .addListener(transitionListener)
             )
             binding.cvImageContainer.layoutParams.apply {
-                height = if (isExpanded) 1400 else 780
+                height = if (isExpanded) binding.ivPictureOfTheDay.height else imageInitHeight
                 binding.cvImageContainer.layoutParams = this
             }
             binding.ivPictureOfTheDay.scaleType = if (isExpanded) ImageView.ScaleType.CENTER_CROP
