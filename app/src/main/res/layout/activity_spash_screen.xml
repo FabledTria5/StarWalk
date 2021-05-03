@@ -9,8 +9,8 @@
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/gifImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_400sdp"
         android:src="@drawable/loading"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,9 +22,9 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/noto_sans_reg"
         android:text="@string/star_walk"
-        android:transitionName="textTransition"
         android:textColor="@color/white"
         android:textSize="@dimen/_18ssp"
+        android:transitionName="textTransition"
         app:layout_constraintBottom_toBottomOf="@+id/gifImageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
