@@ -106,7 +106,7 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cvImageContainer"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="@dimen/_170sdp"
                 android:layout_marginHorizontal="@dimen/startMargin"
                 android:layout_marginTop="@dimen/_6sdp"
@@ -119,8 +119,9 @@
 
                 <ImageView
                     android:id="@+id/ivPictureOfTheDay"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_400sdp"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_420sdp"
                     android:contentDescription="@string/picture_of_the_day"
                     android:scaleType="fitStart"
                     app:url="@{imageURL}" />

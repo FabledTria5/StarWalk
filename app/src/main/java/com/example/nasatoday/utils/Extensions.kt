@@ -18,10 +18,6 @@ fun View.show() {
     visibility = View.VISIBLE
 }
 
-fun View.hide() {
-    visibility = View.GONE
-}
-
 fun MaterialCardView.focusOn(nestedScrollView: NestedScrollView) = nestedScrollView.post {
     nestedScrollView.smoothScrollTo(0, this.bottom)
 }

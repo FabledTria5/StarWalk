@@ -1,6 +1,5 @@
 package com.example.nasatoday.network
 
-import com.example.nasatoday.model.PictureOfTheDayModel
 import com.example.nasatoday.model.PictureOfTheDayResponse
 import retrofit2.Call
 import retrofit2.http.GET
