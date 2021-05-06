@@ -4,8 +4,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/main_background">
+        android:layout_height="match_parent">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilWikiSearch"
@@ -31,7 +30,7 @@
                 android:id="@+id/editText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/bottom_sheet_background"
+                android:background="?attr/searchFieldBackground"
                 android:inputType="text"
                 android:textColor="@color/white"
                 android:textCursorDrawable="@drawable/custom_cursor" />

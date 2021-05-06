@@ -8,6 +8,15 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="lightGray">#a2a2a2</color>
+    <color name="lightGray">#A2A2A2</color>
     <color name="iconBlue">#00e8ff</color>
+    <color name="SantaFe">#B6694C</color>
+    <color name="Boulder">#7C7C7C</color>
+    <color name="Asphalt">#150B08</color>
+    <color name="darkBlue">#2B4162</color>
+    <color name="SilverChalice">#B2B2B2</color>
+    <color name="CodGray">#101010</color>
+    <color name="Cowboy">#4C2C2E</color>
+    <color name="DarkBlue">#274472</color>
+    <color name="BabyBlue">#D4F1F4</color>
 </resources>

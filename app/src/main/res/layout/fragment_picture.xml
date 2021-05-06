@@ -19,8 +19,7 @@
             android:layout_height="700dp"
             android:background="@color/black"
             android:contentDescription="@string/picture_of_the_day"
-            android:paddingHorizontal="@dimen/_10sdp"
-            android:paddingTop="@dimen/_10sdp"
+            android:paddingHorizontal="@dimen/startMargin"
             android:paddingBottom="@dimen/_5sdp"
             android:transitionName="pictureBig"
             app:url="@{pictureURL}" />

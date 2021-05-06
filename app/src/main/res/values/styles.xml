@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="headersText">
+        <item name="fontFamily">@font/noto_sans_bold</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:layout_marginStart">@dimen/startMargin</item>
+    </style>
+
+    <style name="imageDescription">
+        <item name="fontFamily">@font/noto_sans_reg</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:layout_marginBottom">@dimen/imageDescriptionBottom</item>
+        <item name="android:layout_marginStart">@dimen/startMargin</item>
+    </style>
+
+</resources>

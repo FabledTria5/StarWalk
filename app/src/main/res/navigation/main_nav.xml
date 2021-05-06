@@ -12,10 +12,6 @@
             app:destination="@id/pictureFragment" />
     </fragment>
     <fragment
-        android:id="@+id/newsFragment"
-        android:name="com.example.nasatoday.fragments.NewsFragment"
-        android:label="NewsFragment" />
-    <fragment
         android:id="@+id/exploreFragment"
         android:name="com.example.nasatoday.fragments.ExploreFragment"
         android:label="ExploreFragment" />
@@ -27,4 +23,8 @@
             android:name="picture"
             app:argType="com.example.nasatoday.model.PictureOfTheDayModel" />
     </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.nasatoday.fragments.SettingsFragment"
+        android:label="SettingsFragment" />
 </navigation>
