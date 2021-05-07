@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="57dp">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilWikiSearch"
@@ -36,6 +38,39 @@
                 android:textCursorDrawable="@drawable/custom_cursor" />
 
         </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/textView6"
+            style="@style/headersText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/startMargin"
+            android:text="@string/notes"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tilWikiSearch" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvNotesList"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/startMargin"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView6"
+            tools:listitem="@layout/notes_item" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnAddNote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/startMargin"
+            android:contentDescription="@string/add_note"
+            android:src="@drawable/ic_add"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:tint="@color/white" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

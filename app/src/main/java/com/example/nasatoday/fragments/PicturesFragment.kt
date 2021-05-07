@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import coil.load
 import com.example.nasatoday.R
 import com.example.nasatoday.databinding.FragmentPicturesBinding
 import com.example.nasatoday.model.PictureOfTheDayModel
@@ -65,7 +66,9 @@ class PicturesFragment : Fragment() {
 
     private fun setPicture(model: PictureOfTheDayModel) {
         binding.dataIsPicture = true
-        binding.pictureURL = model.hdurl
+        binding.ivPictureOfTheDay.load(model.hdurl) {
+            placeholder(R.drawable.ic_placeholder)
+        }
         setContentText(model)
     }
 

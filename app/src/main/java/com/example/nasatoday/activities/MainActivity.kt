@@ -7,8 +7,8 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.nasatoday.R
 import com.example.nasatoday.databinding.ActivityMainBinding
-import com.example.nasatoday.utils.Constants.Companion.MY_PREFERENCES
-import com.example.nasatoday.utils.Constants.Companion.THEME_PREFERENCE
+import com.example.nasatoday.utils.Constants.MY_PREFERENCES
+import com.example.nasatoday.utils.Constants.THEME_PREFERENCE
 import com.example.nasatoday.utils.Themes
 
 class MainActivity : AppCompatActivity() {

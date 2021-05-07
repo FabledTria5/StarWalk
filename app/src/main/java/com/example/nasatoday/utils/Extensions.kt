@@ -1,9 +1,11 @@
 package com.example.nasatoday.utils
 
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
+import com.example.nasatoday.R
 import com.google.android.material.card.MaterialCardView
 import java.util.regex.Matcher
 import java.util.regex.Pattern
@@ -32,4 +34,10 @@ fun String.getYoutubeUrl(): String {
         return matcher.group()
     }
     return this
+}
+
+fun View.setZoom(isZoom: Boolean) {
+    val animationResource = if (isZoom) R.anim.zoom_in else R.anim.zoom_out
+    val animation = AnimationUtils.loadAnimation(this.context, animationResource)
+    this.startAnimation(animation)
 }

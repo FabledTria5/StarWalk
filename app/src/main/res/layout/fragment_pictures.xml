@@ -9,10 +9,6 @@
             type="Boolean" />
 
         <import type="android.view.View" />
-
-        <variable
-            name="pictureURL"
-            type="String" />
     </data>
 
     <androidx.constraintlayout.motion.widget.MotionLayout
@@ -39,8 +35,7 @@
             android:visibility="@{dataIsPicture ? View.VISIBLE : View.INVISIBLE, default=visible}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:url="@{pictureURL}" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.Barrier
             android:id="@+id/barrier"

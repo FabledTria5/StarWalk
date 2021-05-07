@@ -3,4 +3,5 @@
     <attr name="bottomNavIcons" format="reference" />
     <attr name="themeBackground" format="reference" />
     <attr name="progressBarColor" format="color" />
+    <attr name="noteBackgroundColor" format="color" />
 </resources>

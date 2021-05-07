@@ -22,4 +22,7 @@
     <string name="mars_theme">Mars Theme</string>
     <string name="image">Image</string>
     <string name="zoom_in_btn">zoomInBtn</string>
+    <string name="add_note">Add note</string>
+    <string name="notes">Notes</string>
+    <string name="enter_note_text">Enter note text</string>
 </resources>
