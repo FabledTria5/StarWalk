@@ -1,9 +1,15 @@
 package com.example.nasatoday.fragments
 
+import android.os.Build
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.BulletSpan
+import android.text.style.UnderlineSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import coil.load
@@ -45,6 +51,7 @@ class PicturesFragment : Fragment() {
         val model = arguments?.getSerializable(RESPONSE) as PictureOfTheDayModel
         if (receivedPicture(model)) setPicture(model)
         else setVideo(model)
+        decorateText()
     }
 
     override fun onDestroy() {
@@ -75,6 +82,25 @@ class PicturesFragment : Fragment() {
     private fun setContentText(model: PictureOfTheDayModel) {
         binding.contentTitle.text = model.title
         binding.contentDescription.text = model.explanation
+    }
+
+    private fun decorateText() {
+        SpannableString(binding.contentTitle.text).apply {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                setSpan(
+                    BulletSpan(
+                        30,
+                        ContextCompat.getColor(requireContext(), R.color.white),
+                        15
+                    ),
+                    0,
+                    1,
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+                setSpan(UnderlineSpan(), 0, this.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            }
+            binding.contentTitle.text = this
+        }
     }
 
     private fun receivedPicture(model: PictureOfTheDayModel): Boolean {

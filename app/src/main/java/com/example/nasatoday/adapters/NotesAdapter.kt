@@ -29,7 +29,6 @@ class NotesAdapter : RecyclerView.Adapter<NotesAdapter.NotesViewHolder>(), ItemT
         fun bind(position: Int) {
             binding.materialCheckBox.isChecked = notesList[position].done
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotesViewHolder {
