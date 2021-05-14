@@ -36,7 +36,6 @@
         android:layout_marginTop="@dimen/_15sdp"
         android:contentDescription="@string/ursaicon"
         android:src="@drawable/ic_ursa_major"
-        android:transitionName="imageTransition"
         app:layout_constraintEnd_toEndOf="@+id/transitionText"
         app:layout_constraintStart_toStartOf="@+id/transitionText"
         app:layout_constraintTop_toBottomOf="@+id/transitionText" />

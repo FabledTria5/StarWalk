@@ -1,23 +1,31 @@
 package com.example.nasatoday.fragments
 
 import android.os.Bundle
-import android.view.*
-import android.widget.ImageView
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.view.ViewTreeObserver
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import com.example.nasatoday.R
 import com.example.nasatoday.databinding.FragmentHomeBinding
 import com.example.nasatoday.model.PictureOfTheDayData
+import com.example.nasatoday.model.PictureOfTheDayModel
+import com.example.nasatoday.model.PictureOfTheDayResponse
 import com.example.nasatoday.repository.NasaRepository
 import com.example.nasatoday.utils.toast
 import com.example.nasatoday.viewmodels.HomeViewModel
 import com.example.nasatoday.viewmodels.factories.HomeViewModelFactory
 
 class HomeFragment : Fragment() {
+
+    companion object {
+        private const val TAG = "HomeFragment"
+    }
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var viewModel: HomeViewModel
@@ -35,8 +43,9 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setEnterAnimation()
         initViewModel()
-        observeImageOfTheDay()
         observeTime()
+        observeImageOfTheDay()
+        Log.d(TAG, "onViewCreated: ${requireActivity().supportFragmentManager.fragments.size}")
     }
 
     private fun observeTime() {
@@ -50,18 +59,32 @@ class HomeFragment : Fragment() {
             when (pictureData) {
                 is PictureOfTheDayData.Error -> toast(pictureData.error.toString())
                 is PictureOfTheDayData.Success -> {
-                    binding.imageURL = pictureData.pictureOfTheDayModel.url
+                    val response = pictureData.pictureOfTheDayResponse
+                    setPicture(response.last())
                     binding.ivPictureOfTheDay.setOnClickListener {
-                        val extras =
-                            FragmentNavigatorExtras(binding.ivPictureOfTheDay to "pictureBig")
-                        HomeFragmentDirections.openPicture(picture = pictureData.pictureOfTheDayModel)
-                            .also {
-                                findNavController().navigate(it, extras)
-                            }
+                        openImage(response)
                     }
                 }
             }
         }
+    }
+
+    private fun openImage(pictureResponse: PictureOfTheDayResponse) {
+        if (pictureResponse.last().thumbnail_url == null) {
+            HomeFragmentDirections.openPictures(response = pictureResponse).also {
+                findNavController().navigate(it)
+            }
+        } else {
+            HomeFragmentDirections.openPictures(response = pictureResponse).also {
+                findNavController().navigate(it)
+            }
+        }
+    }
+
+    private fun setPicture(pictureModel: PictureOfTheDayModel) {
+        if (pictureModel.thumbnail_url == null) binding.imageURL = pictureModel.url
+        else binding.imageURL = pictureModel.thumbnail_url
+        binding.pictureReceived = pictureModel.thumbnail_url == null
     }
 
     private fun initViewModel() {
@@ -72,16 +95,6 @@ class HomeFragment : Fragment() {
 
     private fun setEnterAnimation() {
         val sharedText = view?.findViewById<TextView>(R.id.textView)
-        val sharedImage = view?.findViewById<ImageView>(R.id.imageView)
-
-        sharedImage?.viewTreeObserver?.addOnPreDrawListener(object :
-            ViewTreeObserver.OnPreDrawListener {
-            override fun onPreDraw(): Boolean {
-                sharedImage.viewTreeObserver.removeOnPreDrawListener(this)
-                requireActivity().startPostponedEnterTransition()
-                return true
-            }
-        })
 
         sharedText?.viewTreeObserver?.addOnPreDrawListener(object :
             ViewTreeObserver.OnPreDrawListener {

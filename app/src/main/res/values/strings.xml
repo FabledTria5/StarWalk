@@ -6,6 +6,7 @@
 
     <string name="home_message">All you need to unravel the mysteries of the midnight sky</string>
     <string name="picture_of_the_day">Picture of the day</string>
+    <string name="video_of_the_day">Video of the day</string>
     <string name="home">Home</string>
     <string name="news">News</string>
     <string name="explore">Explore</string>
@@ -20,4 +21,5 @@
     <string name="moon_theme">Moon Theme</string>
     <string name="space_theme">Space Theme</string>
     <string name="mars_theme">Mars Theme</string>
+    <string name="image">Image</string>
 </resources>

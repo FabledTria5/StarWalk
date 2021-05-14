@@ -5,8 +5,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="?attr/searchFieldBackground"
-        app:behavior_peekHeight="@dimen/_110sdp"
+        android:background="?attr/themeBackground"
+        app:behavior_peekHeight="@dimen/_160sdp"
         app:layout_behavior="@string/bottom_sheet_behavior">
 
         <androidx.cardview.widget.CardView
@@ -21,28 +21,17 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tvPictureTitle"
-            style="@style/headersText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/startMargin"
-            android:layout_marginTop="@dimen/_3sdp"
-            android:textSize="@dimen/_15ssp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView" />
-
-        <TextView
             android:id="@+id/tvPictureDescription"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/startMargin"
+            android:layout_marginTop="@dimen/_30sdp"
             android:fontFamily="@font/noto_sans_reg"
             android:paddingHorizontal="@dimen/_10sdp"
             android:textColor="@color/lightGray"
             android:textSize="@dimen/_12ssp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvPictureTitle" />
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

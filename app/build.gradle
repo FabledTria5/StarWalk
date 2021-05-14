@@ -94,4 +94,7 @@ dependencies {
 
     // FLow RecyclerView
     implementation 'com.chenlittleping:recyclercoverflow:1.0.6'
+
+    // Youtube player
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
 }

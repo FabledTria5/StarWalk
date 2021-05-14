@@ -29,16 +29,6 @@ class PictureFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setupAnimation()
         fillInfo()
-        setupListeners()
-    }
-
-    private fun setupListeners() {
-        binding.chipGroup.setOnCheckedChangeListener { _, checkedId ->
-            when (checkedId) {
-                R.id.chipHd -> binding.pictureURL = args.picture.hdurl
-                R.id.chipSd -> binding.pictureURL = args.picture.url
-            }
-        }
     }
 
     private fun setupAnimation() {
@@ -50,7 +40,7 @@ class PictureFragment : Fragment() {
 
     private fun fillInfo() {
         args.picture.apply {
-            binding.pictureURL = hdurl
+            binding.pictureURL = url
             binding.pictureBottomSheet.tvPictureDescription.text = explanation
             binding.pictureBottomSheet.tvPictureTitle.text = title
         }

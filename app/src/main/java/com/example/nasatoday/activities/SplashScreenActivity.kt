@@ -36,9 +36,8 @@ class SplashScreenActivity : AppCompatActivity() {
         Intent(this, MainActivity::class.java).also {
 
             val textPair = Pair<View, String>(transitionText, "textTransition")
-            val imagePair = Pair<View, String>(transitionImage, "imageTransition")
             val options = ActivityOptions
-                .makeSceneTransitionAnimation(this, textPair, imagePair)
+                .makeSceneTransitionAnimation(this, textPair)
 
             startActivity(it, options.toBundle())
             Handler(Looper.getMainLooper()).postDelayed({ finish() }, ACTIVITY_TIMEOUT)

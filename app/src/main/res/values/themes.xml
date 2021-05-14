@@ -16,7 +16,8 @@
         <item name="fontFamily">@font/noto_sans_reg</item>
         <item name="android:windowBackground">@drawable/space_background</item>
         <item name="bottomNavIcons">@drawable/bottom_nav_icon_selector_space</item>
-        <item name="searchFieldBackground">@drawable/bottom_sheet_background_space</item>
+        <item name="themeBackground">@drawable/bottom_sheet_background_space</item>
+        <item name="progressBarColor">@color/iconBlue</item>
     </style>
 
     <style name="Theme.Moon" parent="Theme.MaterialComponents.DayNight.NoActionBar">
@@ -35,7 +36,8 @@
         <item name="fontFamily">@font/noto_sans_reg</item>
         <item name="android:windowBackground">@drawable/moon_background</item>
         <item name="bottomNavIcons">@drawable/bottom_nav_icon_selector_moon</item>
-        <item name="searchFieldBackground">@drawable/bottom_sheet_background_moon</item>
+        <item name="themeBackground">@drawable/bottom_sheet_background_moon</item>
+        <item name="progressBarColor">@color/SilverChalice</item>
     </style>
 
     <style name="Theme.Mars" parent="Theme.MaterialComponents.DayNight.NoActionBar">
@@ -54,6 +56,7 @@
         <item name="fontFamily">@font/noto_sans_reg</item>
         <item name="android:windowBackground">@drawable/mars_background</item>
         <item name="bottomNavIcons">@drawable/bottom_nav_icon_selector_mars</item>
-        <item name="searchFieldBackground">@drawable/bottom_sheet_background_mars</item>
+        <item name="themeBackground">@drawable/bottom_sheet_background_mars</item>
+        <item name="progressBarColor">@color/Cowboy</item>
     </style>
 </resources>
