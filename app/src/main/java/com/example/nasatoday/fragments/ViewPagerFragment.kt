@@ -47,11 +47,11 @@ class ViewPagerFragment : Fragment() {
         Log.d(TAG, "onViewCreated: ${childFragmentManager.fragments.size}")
     }
 
-    private fun getFragments(): ArrayList<PictureFragment> {
-        val arrayList = arrayListOf<PictureFragment>()
+    private fun getFragments(): ArrayList<PicturesFragment> {
+        val arrayList = arrayListOf<PicturesFragment>()
         for (item in args.response) {
-            arrayList.add(PictureFragment.getInstance(item))
+            arrayList.add(PicturesFragment.getInstance(item))
         }
-        return arrayList.reversed() as ArrayList<PictureFragment>
+        return arrayList.reversed() as ArrayList<PicturesFragment>
     }
 }

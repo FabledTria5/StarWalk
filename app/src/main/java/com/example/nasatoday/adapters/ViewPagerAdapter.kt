@@ -3,10 +3,10 @@ package com.example.nasatoday.adapters
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.nasatoday.fragments.PictureFragment
+import com.example.nasatoday.fragments.PicturesFragment
 
 class ViewPagerAdapter(
-    list: ArrayList<PictureFragment>,
+    list: ArrayList<PicturesFragment>,
     fragmentManager: FragmentManager,
     lifecycle: Lifecycle
 ) : FragmentStateAdapter(fragmentManager, lifecycle) {

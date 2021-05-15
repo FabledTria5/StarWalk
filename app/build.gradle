@@ -83,11 +83,10 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
     // Gif
-    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.22'
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.23'
 
     // Coil
     implementation("io.coil-kt:coil:1.2.0")
-    implementation("io.coil-kt:coil-gif:1.2.0")
 
     // Interceptor
     implementation('com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2')

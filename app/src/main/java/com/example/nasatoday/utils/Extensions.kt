@@ -2,10 +2,9 @@ package com.example.nasatoday.utils
 
 import android.view.View
 import android.widget.Toast
+import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
-import com.example.nasatoday.model.PictureOfTheDayModel
-import com.example.nasatoday.model.PictureOfTheDayResponse
-import java.util.ArrayList
+import com.google.android.material.card.MaterialCardView
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
@@ -19,8 +18,8 @@ fun View.show() {
     visibility = View.VISIBLE
 }
 
-fun View.hide() {
-    visibility = View.GONE
+fun MaterialCardView.focusOn(nestedScrollView: NestedScrollView) = nestedScrollView.post {
+    nestedScrollView.smoothScrollTo(0, this.bottom)
 }
 
 fun String.getYoutubeUrl(): String {

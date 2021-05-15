@@ -16,16 +16,24 @@
             name="imageURL"
             type="String" />
 
+        <variable
+            name="isExpanded"
+            type="Boolean" />
+
         <import type="android.view.View" />
     </data>
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="57dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:layout_marginBottom="57dp">
 
             <ImageView
                 android:id="@+id/imageView"
@@ -93,30 +101,58 @@
                 android:text="@{currentDate}"
                 android:textColor="@color/lightGray"
                 android:textSize="@dimen/_10ssp"
-                app:layout_constraintBottom_toTopOf="@+id/ivPictureOfTheDay"
+                app:layout_constraintBottom_toTopOf="@+id/cvImageContainer"
                 app:layout_constraintEnd_toEndOf="parent" />
 
-            <ImageView
-                android:id="@+id/ivPictureOfTheDay"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_130sdp"
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvImageContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_170sdp"
                 android:layout_marginHorizontal="@dimen/startMargin"
                 android:layout_marginTop="@dimen/_6sdp"
-                android:contentDescription="@string/picture_of_the_day"
-                android:transitionName="pictureBig"
+                android:visibility="@{imageURL != null ? View.VISIBLE : View.INVISIBLE, default=invisible}"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardCornerRadius="@dimen/_5sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView3"
-                app:url="@{imageURL}" />
+                app:layout_constraintTop_toBottomOf="@+id/textView3">
 
-            <TextView
-                style="@style/imageDescription"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{pictureReceived ? @string/picture_of_the_day : @string/video_of_the_day, default = @string/picture_of_the_day}"
-                android:visibility="@{imageURL != null ? View.VISIBLE : View.GONE, default=gone}"
-                app:layout_constraintBottom_toBottomOf="@+id/ivPictureOfTheDay"
-                app:layout_constraintStart_toStartOf="@+id/ivPictureOfTheDay" />
+                <ImageView
+                    android:id="@+id/ivPictureOfTheDay"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_420sdp"
+                    android:contentDescription="@string/picture_of_the_day"
+                    android:scaleType="fitStart"
+                    app:url="@{imageURL}" />
+
+                <TextView
+                    style="@style/imageDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:text="@{pictureReceived ? @string/picture_of_the_day : @string/video_of_the_day, default = @string/picture_of_the_day}"
+                    android:visibility="@{imageURL != null ? View.VISIBLE : View.GONE, default=gone}"
+                    app:layout_constraintBottom_toBottomOf="@+id/cvImageContainer"
+                    app:layout_constraintStart_toStartOf="@+id/cvImageContainer" />
+
+                <ImageView
+                    android:id="@+id/btnZoomIn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|bottom"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_2sdp"
+                    android:contentDescription="@string/zoom_in_btn"
+                    android:padding="@dimen/_5sdp"
+                    android:src="@{!isExpanded ? @drawable/ic_zoom_in : @drawable/ic_zoom_out, default=@drawable/ic_zoom_in}"
+                    android:visibility="@{pictureReceived ? View.VISIBLE : View.GONE, default=gone}"
+                    app:layout_constraintBottom_toBottomOf="@+id/cvImageContainer"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:tint="@color/white" />
+
+            </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.progressindicator.CircularProgressIndicator
                 android:id="@+id/circularProgressIndicator"
@@ -125,13 +161,14 @@
                 android:indeterminate="true"
                 android:visibility="@{imageURL != null ? View.GONE : View.VISIBLE, default=visible}"
                 app:indicatorColor="@color/black"
-                app:trackColor="?attr/progressBarColor"
-                app:layout_constraintBottom_toBottomOf="@id/ivPictureOfTheDay"
-                app:layout_constraintEnd_toEndOf="@+id/ivPictureOfTheDay"
-                app:layout_constraintStart_toStartOf="@+id/ivPictureOfTheDay"
-                app:layout_constraintTop_toTopOf="@+id/ivPictureOfTheDay" />
+                app:layout_constraintBottom_toBottomOf="@id/cvImageContainer"
+                app:layout_constraintEnd_toEndOf="@+id/cvImageContainer"
+                app:layout_constraintStart_toStartOf="@+id/cvImageContainer"
+                app:layout_constraintTop_toTopOf="@+id/cvImageContainer"
+                app:trackColor="?attr/progressBarColor" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
+
 </layout>

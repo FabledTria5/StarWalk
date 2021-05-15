@@ -13,15 +13,15 @@ import com.example.nasatoday.utils.getYoutubeUrl
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 
-class PictureFragment : Fragment() {
+class PicturesFragment : Fragment() {
 
     companion object {
 
         const val RESPONSE = "response"
 
-        fun getInstance(pictureOfTheDayModel: PictureOfTheDayModel): PictureFragment {
+        fun getInstance(pictureOfTheDayModel: PictureOfTheDayModel): PicturesFragment {
             val bundle = Bundle()
-            val fragment = PictureFragment()
+            val fragment = PicturesFragment()
             bundle.putSerializable(RESPONSE, pictureOfTheDayModel)
             fragment.arguments = bundle
             return fragment
