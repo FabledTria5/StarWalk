@@ -10,6 +10,6 @@ import com.example.nasatoday.R
 fun loadImage(imageView: ImageView, imageURL: String?) {
     imageView.load(imageURL) {
         transformations(RoundedCornersTransformation(radius = 20f))
-        placeholder(R.drawable.placeholder_image)
+        placeholder(R.drawable.ic_placeholder)
     }
 }
