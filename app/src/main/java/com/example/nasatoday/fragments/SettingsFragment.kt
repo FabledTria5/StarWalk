@@ -15,8 +15,8 @@ import androidx.fragment.app.Fragment
 import com.example.nasatoday.R
 import com.example.nasatoday.adapters.ThemesAdapter
 import com.example.nasatoday.databinding.FragmentSettingsBinding
-import com.example.nasatoday.utils.Constants.Companion.MY_PREFERENCES
-import com.example.nasatoday.utils.Constants.Companion.THEME_PREFERENCE
+import com.example.nasatoday.utils.Constants.MY_PREFERENCES
+import com.example.nasatoday.utils.Constants.THEME_PREFERENCE
 import com.example.nasatoday.utils.Themes
 import recycler.coverflow.CoverFlowLayoutManger
 

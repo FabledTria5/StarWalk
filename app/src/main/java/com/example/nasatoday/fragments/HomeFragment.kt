@@ -5,16 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.transition.ChangeBounds
-import androidx.transition.ChangeImageTransform
-import androidx.transition.TransitionManager
-import androidx.transition.TransitionSet
+import androidx.transition.*
+import coil.load
 import com.example.nasatoday.R
 import com.example.nasatoday.databinding.FragmentHomeBinding
 import com.example.nasatoday.model.PictureOfTheDayData
@@ -26,7 +23,6 @@ import com.example.nasatoday.utils.show
 import com.example.nasatoday.utils.toast
 import com.example.nasatoday.viewmodels.HomeViewModel
 import com.example.nasatoday.viewmodels.factories.HomeViewModelFactory
-import androidx.transition.Transition
 
 class HomeFragment : Fragment() {
 
@@ -105,10 +101,18 @@ class HomeFragment : Fragment() {
 
     private fun setPicture(pictureModel: PictureOfTheDayModel) {
         if (pictureModel.thumbnail_url == null) {
-            binding.imageURL = pictureModel.hdurl
+            loadPicture(pictureModel.url)
             binding.btnZoomIn.show()
-        } else binding.imageURL = pictureModel.thumbnail_url
+        } else loadPicture(pictureModel.thumbnail_url)
         binding.pictureReceived = pictureModel.thumbnail_url == null
+    }
+
+    private fun loadPicture(url: String) = binding.ivPictureOfTheDay.load(url) {
+        listener(
+            onSuccess = { _, _ ->
+                binding.imageLoaded = true
+            }
+        )
     }
 
     private fun initViewModel() {
@@ -132,8 +136,6 @@ class HomeFragment : Fragment() {
                 height = if (isExpanded) binding.ivPictureOfTheDay.height else imageInitHeight
                 binding.cvImageContainer.layoutParams = this
             }
-            binding.ivPictureOfTheDay.scaleType = if (isExpanded) ImageView.ScaleType.CENTER_CROP
-            else ImageView.ScaleType.FIT_START
         }
     }
 

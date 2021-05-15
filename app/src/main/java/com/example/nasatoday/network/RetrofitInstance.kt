@@ -1,6 +1,6 @@
 package com.example.nasatoday.network
 
-import com.example.nasatoday.utils.Constants.Companion.BASE_URL
+import com.example.nasatoday.utils.Constants.BASE_URL
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
