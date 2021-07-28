@@ -28,6 +28,7 @@ class NotesAdapter : RecyclerView.Adapter<NotesAdapter.NotesViewHolder>(), ItemT
 
         fun bind(position: Int) {
             binding.materialCheckBox.isChecked = notesList[position].done
+            binding.etNoteText.requestFocus()
         }
     }
 

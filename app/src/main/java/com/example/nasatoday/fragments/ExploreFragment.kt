@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.nasatoday.R
 import com.example.nasatoday.adapters.NotesAdapter
 import com.example.nasatoday.databinding.FragmentExploreBinding
@@ -34,6 +35,7 @@ class ExploreFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setupRecyclerView()
         setupListeners()
+        binding.isListEmpty = true
     }
 
     private fun setupRecyclerView() {
@@ -41,6 +43,14 @@ class ExploreFragment : Fragment() {
         binding.rvNotesList.apply {
             adapter = notesAdapter
             layoutManager = LinearLayoutManager(context)
+            addOnChildAttachStateChangeListener(object :
+                RecyclerView.OnChildAttachStateChangeListener {
+                override fun onChildViewAttachedToWindow(view: View) = Unit
+
+                override fun onChildViewDetachedFromWindow(view: View) {
+                    if (notesAdapter.itemCount == 0) binding.isListEmpty = true
+                }
+            })
         }
         ItemTouchHelper(ItemTouchHelperCallback(notesAdapter))
             .attachToRecyclerView(binding.rvNotesList)
@@ -54,6 +64,7 @@ class ExploreFragment : Fragment() {
         }
 
         binding.btnAddNote.setOnClickListener {
+            binding.isListEmpty = false
             notesAdapter.apply {
                 addNote()
                 notifyDataSetChanged()
